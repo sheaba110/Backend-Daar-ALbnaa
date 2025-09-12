@@ -4,14 +4,28 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-django-cors-headers = "*"
-djangorestframework-simplejwt = "*"
-requests = "*"
-mysqlclient = "*"
-pipfile = "*"
+asgiref = "==3.9.1"
+certifi = "==2025.6.15"
+cffi = "==1.17.1"
+charset-normalizer = "==3.4.2"
+cryptography = "==45.0.4"
+dj-rest-auth = "==7.0.1"
+django-allauth = "==65.9.0"
+django-cors-headers = "==4.7.0"
+djangorestframework-simplejwt = "==5.5.0"
+idna = "==3.10"
+mysqlclient = "==2.2.7"
+pillow = "==11.2.1"
+pipfile = "==0.0.2"
+pycparser = "==2.22"
+pyjwt = "==2.9.0"
+requests = "==2.32.4"
+sqlparse = "==0.5.3"
+toml = "==0.10.2"
+tzdata = "==2025.2"
+urllib3 = "==2.5.0"
 djangorestframework = "*"
-dj-rest-auth = {extras = ["social"], version = "*"}
+django = "*"
 
 [dev-packages]
 
