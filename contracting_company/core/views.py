@@ -1,5 +1,5 @@
 from rest_framework import generics, status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from django.db import connection
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 class ConsultationRequestCreateView(generics.CreateAPIView):
     queryset = ConsultationRequest.objects.all()
     serializer_class = ConsultationRequestSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         try:
@@ -35,10 +35,10 @@ class ConsultationRequestCreateView(generics.CreateAPIView):
 class ServiceListView(generics.ListAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]

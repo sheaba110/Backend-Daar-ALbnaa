@@ -1,5 +1,7 @@
+import os
 from pathlib import Path
-
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -50,22 +52,32 @@ INSTALLED_APPS = [
 ]
 
 
+# --- Allauth Settings ---
 SITE_ID = 1
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'  # ممكن تسيبها زي ما هي لو مش عايز تأكيد إيميل دلوقتي
 
-ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  
+ACCOUNT_EMAIL_REQUIRED = True            
+ACCOUNT_USERNAME_REQUIRED = True
 
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+
+
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username']
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_UNIQUE_EMAIL = True
+#google auth
 SOCIALACCOUNT_PROVIDERS = {
     "web": {
-    "client_id": "697535132012-li2geblbvkqgs7olkacapk0o31sv5epg.apps.googleusercontent.com",
+    "client_id": os.getenv("CLIENT_ID"),
     "project_id": "contracting-company-auth",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "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",
+    "client_secret": os.getenv("CLIENT_SECRET"),
     "redirect_uris": ["http://localhost:8000/accounts/google/login/callback/"]
   }
 }
@@ -165,8 +177,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
 
@@ -175,8 +188,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '932182522356357'
-SOCIAL_AUTH_FACEBOOK_SECRET = '42b89f5b88ee605e0c879b7d0439de66'
+#facebook auth
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('AUTH_FACEBOOK_SECRET')
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
@@ -184,17 +198,15 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGIN_METHODS = {'email', 'username'} 
 ACCOUNT_UNIQUE_EMAIL = True
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
 }
 
 # Update these settings
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username', 'Create Password', 'Confirm password']
 
 REST_AUTH = {
     'USE_JWT': True,
