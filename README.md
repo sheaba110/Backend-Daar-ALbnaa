@@ -1,47 +1,83 @@
-# Daily/Weekly Project Documentation
-## Work completed today/this week (2025-07-03)
+# Daar Al-Benaa Egypt
 
-- Set up login and registration pages with Google (OAuth) authentication support.
-- Added Facebook login buttons (currently as placeholders).
-- Made login/register forms appear as pop-ups instead of separate pages.
-- Linked service and consultation buttons on the homepage to require authentication.
-- Improved user experience so that login/register pop-ups appear when trying to access any protected service.
-- Updated `.gitignore` to include migrations folders and unnecessary files.
-- Ensured migrations folders are ignored by git tracking.
-- Documented all code changes and committed them to git.
+A professional contracting company platform built with a Django REST backend and a Next.js frontend.
+This repository is organized for clear separation of responsibilities, secure local development, and scalable deployment.
 
-## الأعمال المنجزة اليوم/هذا الأسبوع (2025-07-03)
+## Overview
 
-- إعداد صفحات تسجيل الدخول وتسجيل الحساب مع دعم تسجيل الدخول عبر Google (OAuth).
-- إضافة أزرار تسجيل الدخول عبر Facebook (كأزرار وهمية حالياً).
-- جعل صفحات تسجيل الدخول/التسجيل تظهر كـ pop-up بدلاً من صفحات منفصلة.
-- ربط أزرار الخدمات والاستشارة في الصفحة الرئيسية بمتطلبات تسجيل الدخول/التسجيل.
-- تحسين تجربة المستخدم بحيث تظهر نافذة تسجيل الدخول أو التسجيل عند محاولة الوصول لأي خدمة تتطلب حساب.
-- إضافة وتحديث .gitignore ليشمل مجلدات الهجرة (migrations) وجميع الملفات غير الضرورية.
-- التأكد من تجاهل مجلدات الهجرة من تتبع git.
-- توثيق جميع التغييرات البرمجية وحفظها في git.
+- Backend: Django 6, Django REST Framework, inertia-django, django-cors-headers.
+- Frontend: Next.js 16, React 19, TypeScript, Tailwind CSS.
+- Purpose: service delivery, customer consultation, authenticated access, and content-driven marketing.
 
-## الأعمال المنجزة اليوم/هذا الأسبوع (2025-07-13)
+## Repository structure
 
-- تم تعديل الواجهة الخلفية لتكون اكثر استقرارا ومازالت تحتاج الي بعض التعديل
-- الان يمكن للمستخدم ان يسجل الدخول باستخدام (Facbook, Google)
-- تم تعديل ملف .gitignore لكي لا يتتبع الملفات الخاصة وبعض الملفات الاخري التي لا يجب تتبعها
-- تم تعديل تسجيل الدخول باستخدام فيسبوك، وتم استخدام Facebook SDK لعرض نافذة تسجيل الدخول وتسجيل الدخول بطريقة احترافية.
+- `contracting_company/` — Django project settings, URLs, WSGI/ASGI entrypoints.
+- `core/` — backend application with business models, serializers, views, forms, and admin configuration.
+- `frontend/` — Next.js application with routes, UI components, and client-side API integration.
+- `requirements.txt` — Python dependencies for the backend.
+- `.gitignore` — ignore rules for generated files, environment files, and frontend artifacts.
 
+## Setup
 
-## Work completed today/this week (2025-07-13)
+1. Create and activate a Python virtual environment.
 
-- The backend has been modified to be more stable, but it still needs some adjustments.
-- Users can now log in using (Facebook, Google).
-- The .gitignore file has been updated to exclude private files and other unnecessary files from tracking.
-- Modified
-- Facebook login has been updated using the Facebook SDK to display a login popup and handle authentication professionally.
+   ```bash
+   python -m venv .venv
+   .\.venv\Scripts\activate
+   ```
 
+2. Install backend dependencies.
 
-## الأعمال المنجزة اليوم/هذا الأسبوع (2025-08-5)
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- لقد حذفت الواجهة الأمامية لأن الذكاء الاصطناعي دمر المنطق على الاخر، كنت أريد أن تكون المصادقة على جانب الخادم ولكن الذكاء الاصطناعي جعلها على جانب العميل لذلك بدأت من الخطوة الأولى لبناء نظام الواجهة الخلفية الصحيح بدون المزيد من الذكاء الاصطناعي بين يدي لذا أتمنى لي التوفيق.
+3. Create a `.env` file at the repository root.
 
-## Work completed today/this week (2025-08-5)
+   ```env
+   DJANGO_SECRET_KEY=your-secret-key
+   DEBUG=True
+   ```
 
-- I deleted the frontend becouse the AI ruined the logic, I wanted the authentication to be on the server side but the AI made it on the client side so I  started from the first step to build the wright backend system with no more AI all by my hands so wish me luck.
+4. Run migrations.
+
+   ```bash
+   python contracting_company/manage.py migrate
+   ```
+
+5. Start the backend server.
+
+   ```bash
+   python contracting_company/manage.py runserver
+   ```
+
+6. Install frontend dependencies.
+
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+7. Start the frontend.
+
+   ```bash
+   npm run dev
+   ```
+
+## Local development URLs
+
+- Backend: `http://127.0.0.1:8000`
+- Frontend: `http://127.0.0.1:3000`
+
+## Notes
+
+- `frontend/.next/`, `frontend/node_modules/`, and `frontend/package-lock.json` are ignored.
+- Secret and environment-specific files should never be committed.
+- Keep backend and frontend dependencies separated for deployment flexibility.
+
+## Recommended workflow
+
+- Use `.env` for local configuration.
+- Commit source files only; exclude generated build artifacts.
+- Run database migrations after modifying models.
+- Review `contracting_company/contracting_company/settings.py` for environment-specific security settings.
