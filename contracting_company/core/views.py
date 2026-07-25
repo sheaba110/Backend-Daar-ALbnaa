@@ -1,14 +1,22 @@
+from core.models import ConsultationRequest, Service, Project
+from core.serializers import ConsultationRequestSerializer, ServiceSerializer, ProjectSerializer
+from inertia import render
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from django.db import connection
 import logging
 
-from core.models import ConsultationRequest, Service, Project
-from core.serializers import ConsultationRequestSerializer, ServiceSerializer, ProjectSerializer
-
 logger = logging.getLogger(__name__)
 
+def index(request):
+    services = Service.objects.all()
+    projects = Project.objects.all()
+    
+    return render(request, 'base.html', props={
+        'services': ServiceSerializer(services, many=True).data,
+        'projects': ProjectSerializer(projects, many=True).data,
+    })
 
 class ConsultationRequestCreateView(generics.CreateAPIView):
     queryset = ConsultationRequest.objects.all()

@@ -1,0 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { api } from "@/lib/api/client";
+export default async function ProjectDetail({params}:{params:Promise<{id:string}>}){const {id}=await params;let project;try{project=(await api.projects()).find(x=>x.id===Number(id))}catch{}if(!project)notFound();const image=api.mediaUrl(project.image);return <main className="container section"><Link href="/projects" className="text-sm font-bold">→ العودة إلى المشاريع</Link><p className="eyebrow mt-16">مشروع {String(project.id).padStart(2,"0")}</p><h1 className="display mt-5 text-6xl md:text-8xl">{project.title}</h1>{image?<div className="relative mt-12 aspect-[16/8] overflow-hidden bg-[#d7d2c8]"><Image src={image} alt={project.title} fill className="object-cover" sizes="100vw" priority/></div>:<div className="mt-12 flex aspect-[16/8] items-center justify-center bg-[#d7d2c8] text-7xl text-[#52604d]">{String(project.id).padStart(2,"0")}</div>}<div className="mt-10 max-w-2xl border-t border-black/20 pt-7"><p className="leading-8 text-black/75">{project.description}</p></div></main>}

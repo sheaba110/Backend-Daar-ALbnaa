@@ -1,11 +1,13 @@
 from django.urls import path
-from core.views import ConsultationRequestCreateView, ServiceListView, ProjectListView
+from core import views
 from rest_framework_simplejwt.views import TokenRefreshView
+from core.views import ConsultationRequestCreateView, ServiceListView, ProjectListView
 
 
 
 urlpatterns = [
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('', views.index, name='templates'),
+    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/consultation/', ConsultationRequestCreateView.as_view(), name='api-consultation'),
     path('api/services/', ServiceListView.as_view(), name='api-services'),
     path('api/projects/', ProjectListView.as_view(), name='api-projects'),
