@@ -165,6 +165,8 @@ frontend/package-lock.json
 
 # Next.js build output
 frontend/.next/
+frontend/.next/dev
+
 .next/
 
 # Poetry (if using poetry instead of pip)

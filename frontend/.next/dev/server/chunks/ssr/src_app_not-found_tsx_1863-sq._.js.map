@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/Backend-Daar-ALbnaa/frontend/src/app/not-found.tsx"],"sourcesContent":["import Link from \"next/link\";\nexport default function NotFound(){return <main className=\"container section\"><p className=\"eyebrow\">404</p><h1 className=\"display mt-6 text-6xl\">الصفحة غير موجودة.</h1><Link href=\"/projects\" className=\"button button-solid mt-10\">العودة إلى المشاريع</Link></main>}\n"],"names":["NotFound","className","href"],"mappings":";;;;;AAAA;;;AACe,SAASA;IAAW,qBAAO,8OAAC;QAAKC,WAAU;;0BAAoB,8OAAC;gBAAEA,WAAU;0BAAU;;;;;;0BAAO,8OAAC;gBAAGA,WAAU;0BAAwB;;;;;;0BAAuB,8OAAC,0LAAI;gBAACC,MAAK;gBAAYD,WAAU;0BAA4B;;;;;;;;;;;;AAAiC"}}]
-}
